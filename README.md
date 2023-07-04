@@ -36,11 +36,7 @@ docker exec gnbsim ping -c 3 -I 12.1.1.2 google.com #Here we ping external DN fr
 ## Iperf test
 ```
 sudo docker exec -it oai-ext-dn iperf3 -s   #server
-
 sudo docker exec -it gnbsim iperf3 -c 192.168.70.135 -B 12.1.1.2 #client
-
-
-
 ```
 
 
