@@ -1,7 +1,37 @@
 # 5GC-GNBSIM-SPGWU
+## Download the 5G core repo
+```
+git clone https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed.git
 
 ```
-docker pull rohankharade/gnbsim
-docker image tag rohankharade/gnbsim:latest gnbsim:latest
+## Build the Gnbsim image
 ```
+cd
+git clone https://gitlab.eurecom.fr/kharade/gnbsim.git
+cd gnbsim
+docker build --tag gnbsim:latest --target gnbsim --file docker/Dockerfile.ubuntu.22.04 .
+
+```
+## Running the core 
+```
+cd oai-cn5g-fed/docker-compose
+sudo docker compose -f docker-compose-basic-nrf.yaml up -d
+sudo docker ps -a
+sudo docker logs --follow oai-amf
+```
+## Running the Gnbsim
+```
+cd oai-cn5g-fed/docker-compose
+sudo docker-compose -f docker-compose-gnbsim.yaml up -d gnbsim
+sudo docker ps -a
+
+```
+Now you can check in the AMF logs that a GNB and a UE are connected to the core.
+## Ping test
+```
+docker exec oai-ext-dn ping -c 3 12.1.1.2 #Here we ping UE from external DN container.
+docker exec gnbsim ping -c 3 -I 12.1.1.2 google.com #
+
+
+
 refrence: https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docs/DEPLOY_SA5G_MINI_WITH_GNBSIM.md
