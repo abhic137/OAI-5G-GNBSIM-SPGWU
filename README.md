@@ -30,7 +30,8 @@ Now you can check in the AMF logs that a GNB and a UE are connected to the core.
 ## Ping test
 you can check the ip of ue in the smf logs
 ```
-sudo docker logs oai-smf
+sudo docker logs oai-smf | grep -o '.*UE IPv4 Address.*' | grep 'UE IPv4 Address'
+
 ```
 ```
 docker exec oai-ext-dn ping -c 3 12.1.1.2 #Here we ping UE from external DN container.
