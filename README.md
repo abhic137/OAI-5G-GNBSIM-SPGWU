@@ -4,7 +4,15 @@
 git clone https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed.git
 
 ```
-## Build the Gnbsim image
+## Build the Gnbsim image OR Pull the image
+
+Pulling
+```
+docker pull rohankharade/gnbsim
+docker image tag rohankharade/gnbsim:latest gnbsim:latest
+
+```
+Building
 ```
 cd
 git clone https://gitlab.eurecom.fr/kharade/gnbsim.git
